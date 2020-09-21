@@ -1,4 +1,4 @@
-package com.project.firstkotlin.splash
+package com.project.moon.splash
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,15 +8,19 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.project.moon.R
+import com.project.moon.entity.SocketSingleton
 import com.project.moon.login.LoginActivity
 import com.project.moon.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
+    private var socket = SocketSingleton.getSocket()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        socket.connect()
 
         Handler().postDelayed({
             // Initialize Firebase Auth
