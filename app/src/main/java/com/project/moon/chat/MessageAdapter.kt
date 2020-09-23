@@ -1,4 +1,4 @@
-package com.project.moon.main.chat
+package com.project.moon.chat
 
 import android.view.LayoutInflater
 import android.view.View

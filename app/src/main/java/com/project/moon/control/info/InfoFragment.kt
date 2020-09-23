@@ -1,4 +1,4 @@
-package com.project.moon.main.info
+package com.project.moon.control.info
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +14,6 @@ import com.project.moon.R
 import com.project.moon.entity.SocketSingleton
 import com.project.moon.login.LoginActivity
 import io.socket.emitter.Emitter
-import kotlinx.android.synthetic.main.fragment_info.*
 import kotlinx.android.synthetic.main.fragment_info.view.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -22,7 +21,6 @@ import org.json.JSONObject
 class InfoFragment : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
-    private var socket = SocketSingleton.getSocket()
     var arrayAdapter: ArrayAdapter<String>? = null
     var userList = arrayListOf<String>()
 
@@ -33,11 +31,7 @@ class InfoFragment : Fragment() {
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_info, container, false)
 
-//        socket.connect()
-//        socket.emit("client-request-userlist")
-//        socket.on("server-send-userlist", onRetrieveResult)
-
-        view.info_loading.visibility = View.VISIBLE
+//        view.info_loading.visibility = View.VISIBLE
 
         mAuth = Firebase.auth
         val currentUser = mAuth.currentUser
@@ -46,7 +40,6 @@ class InfoFragment : Fragment() {
         view.rv_user.adapter = arrayAdapter
 
         view.btn_logout.setOnClickListener {
-//            socket.emit("client-exits", currentUser!!.email)
             mAuth.signOut()
             val intent = Intent(this.activity, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -56,21 +49,4 @@ class InfoFragment : Fragment() {
         return view
     }
 
-
-    private var onRetrieveResult = Emitter.Listener { args ->
-        try {
-            var user = args[0] as JSONObject
-            val array = user.getJSONArray("danhsach")
-            userList.clear()
-            this.activity?.runOnUiThread {
-                view?.info_loading?.visibility = View.INVISIBLE
-                for (i in 0..array.length() - 1) {
-                    userList.add(array.getString(i))
-                }
-                arrayAdapter?.notifyDataSetChanged()
-            }
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-    }
 }
