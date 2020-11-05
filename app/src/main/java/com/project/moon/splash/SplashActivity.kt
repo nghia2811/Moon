@@ -14,13 +14,10 @@ import com.project.moon.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
-    private var socket = SocketSingleton.getSocket()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-        socket.connect()
 
         Handler().postDelayed({
             // Initialize Firebase Auth

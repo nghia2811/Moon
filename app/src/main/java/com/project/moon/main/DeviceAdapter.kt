@@ -1,4 +1,4 @@
-package com.project.moon.device
+package com.project.moon.main
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.project.moon.R
 import com.project.moon.control.ControlActivity
 import com.project.moon.main.MainActivity
 
-class DeviceAdapter(val mContext: DeviceFragment, private val myDataset: ArrayList<String>) :
+class DeviceAdapter(val mContext: MainActivity, private val myDataset: ArrayList<String>) :
     RecyclerView.Adapter<DeviceAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -36,7 +36,7 @@ class DeviceAdapter(val mContext: DeviceFragment, private val myDataset: ArrayLi
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.username.text = myDataset[position]
         holder.layout.setOnClickListener {
-            var intent = Intent(mContext.context, ControlActivity::class.java)
+            var intent = Intent(mContext, ControlActivity::class.java)
             intent.putExtra("device", myDataset[position])
             mContext.startActivity(intent)
         }

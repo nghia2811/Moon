@@ -30,9 +30,11 @@
                 app:cardCornerRadius="40dp">
 
                 <ImageView
+                    android:id="@+id/set_avatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/logo" />
+                    android:background="@drawable/user"
+                    android:scaleType="fitXY"/>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
@@ -80,7 +82,7 @@
             android:layout_height="45dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/edittext_selector"
-            android:drawableLeft="@drawable/ic_baseline_check_24"
+            android:drawableLeft="@drawable/ic_baseline_check_circle_24"
             android:drawablePadding="10dp"
             android:hint="Confirm Password"
             android:inputType="textPassword"
@@ -96,18 +98,6 @@
             android:drawableLeft="@drawable/ic_baseline_emoji_emotions_24"
             android:drawablePadding="10dp"
             android:hint="Nickname"
-            android:padding="10dp"
-            android:paddingStart="10dp" />
-
-        <EditText
-            android:id="@+id/register_address"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/edittext_selector"
-            android:drawableLeft="@drawable/ic_baseline_location_on_24"
-            android:drawablePadding="10dp"
-            android:hint="Address"
             android:padding="10dp"
             android:paddingStart="10dp" />
 

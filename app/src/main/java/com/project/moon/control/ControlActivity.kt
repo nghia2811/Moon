@@ -17,7 +17,7 @@ class ControlActivity : AppCompatActivity() {
         setContentView(R.layout.activity_control)
 
         device = intent.getStringExtra("device")
-        tv_devicename.text = device
+//        tv_devicename.text = device
 
         pagerAdapter = ControlPagerAdapter(supportFragmentManager)
         viewPager = findViewById(R.id.vp_control)
