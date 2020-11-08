@@ -5,20 +5,20 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_heading"
+        android:id="@+id/tv_heading_dv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="Current control"
+        android:text="Add device:"
         android:textColor="@color/colorBlack"
-        android:textSize="17sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/device_img"
+        android:id="@+id/add_device_img"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
@@ -26,10 +26,10 @@
         app:cardCornerRadius="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_heading">
+        app:layout_constraintTop_toBottomOf="@id/tv_heading_dv">
 
         <ImageView
-            android:id="@+id/info_image"
+            android:id="@+id/add_device"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/logo" />
@@ -37,7 +37,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/txt_devicename"
+        android:id="@+id/txt_device_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -47,22 +47,24 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/device_img" />
+        app:layout_constraintTop_toBottomOf="@id/add_device_img" />
+
+    <EditText
+        android:id="@+id/edt_device_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/edittext_selector"
+        android:hint="Nhập tên thiết bị..."
+        android:inputType="text"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_device_name" />
 
     <TextView
-        android:id="@+id/tv_devicename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:text="Xe Arduino"
-        android:textColor="@color/colorBlack"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/txt_devicename"
-        app:layout_constraintTop_toBottomOf="@id/device_img" />
-
-    <TextView
-        android:id="@+id/txt_description"
+        android:id="@+id/txt_dv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -72,22 +74,38 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_devicename"/>
+        app:layout_constraintTop_toBottomOf="@id/edt_device_name"/>
 
-    <TextView
-        android:id="@+id/tv_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Xe điều khiển từ xa esp8266"
-        android:textColor="@color/colorBlack"
-        android:textSize="18sp"
+    <EditText
+        android:id="@+id/edt_dv_description"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/edittext_selector"
+        android:hint="Nhập mô tả về thiết bị..."
+        android:inputType="text"
+        android:padding="10dp"
+        android:paddingStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_description" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_dv_description" />
+
+    <Button
+        android:id="@+id/btn_add_device"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_selector"
+        android:text="Add"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_dv_description"/>
 
     <LinearLayout
-        android:id="@+id/info_loading"
+        android:id="@+id/dv_loading"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
@@ -97,7 +115,7 @@
         android:orientation="vertical"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_heading">
+        app:layout_constraintTop_toBottomOf="@id/tv_heading_dv">
 
         <ProgressBar
             android:layout_width="wrap_content"

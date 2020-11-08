@@ -19,6 +19,7 @@
             app:cardCornerRadius="25dp">
 
             <ImageView
+                android:id="@+id/device_ct_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </androidx.cardview.widget.CardView>
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_toRightOf="@id/cv_avatar"
-            android:text="Username"
+            android:text="Device"
             android:layout_centerVertical="true"
             android:textColor="@color/colorBlack"
             android:textSize="18sp"

@@ -11,8 +11,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -23,7 +21,6 @@ import com.project.moon.R
 import com.project.moon.entity.User
 import com.project.moon.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
-import java.util.*
 import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
@@ -32,7 +29,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var mData: DatabaseReference
     private lateinit var storage: FirebaseStorage
     var uri: Uri? = null
-    var url: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,16 +41,23 @@ class RegisterActivity : AppCompatActivity() {
             if (register_user.text.toString() == ""
                 || register_pass.text.toString() == ""
                 || register_name.text.toString() == ""
+                || uri == null
             ) {
                 Toast.makeText(
                     this@RegisterActivity,
-                    "Vui lòng thêm đầy đủ thông tin",
+                    "Vui lòng thêm đầy đủ thông tin!",
                     Toast.LENGTH_SHORT
                 ).show()
             } else if (!isEmailValid(register_user.text.toString())) {
                 Toast.makeText(
                     this@RegisterActivity,
-                    "Vui lòng nhập đúng địa chỉ email",
+                    "Vui lòng nhập đúng địa chỉ email!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else if (register_pass.text.toString() != register_confirm_pass.text.toString()) {
+                Toast.makeText(
+                    this@RegisterActivity,
+                    "Vui lòng xác nhận lại mật khẩu!",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
@@ -96,25 +99,38 @@ class RegisterActivity : AppCompatActivity() {
                     val storageRef: StorageReference =
                         storage.getReferenceFromUrl("gs://project-3-1ca3b.appspot.com")
 
-                    val date = Calendar.getInstance().time
-                    val mountainsRef = storageRef.child("avatar").child("image" + date.time + ".png")
+                    val mountainsRef = storageRef.child("avatar").child(email + "_avatar" + ".png")
 
-                    mountainsRef.putFile(uri!!)
+                    val uploadTask = mountainsRef.putFile(uri!!)
 
-                    url = mountainsRef.downloadUrl.result.toString()
+                    val urlTask = uploadTask.continueWithTask { task ->
+                        if (!task.isSuccessful) {
+                            task.exception?.let {
+                                throw it
+                            }
+                        }
+                        mountainsRef.downloadUrl
+                    }.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            var url = task.result.toString()
+                            var user = User(email, password, register_name.text.toString(), url)
+                            var mUser = mAuth.currentUser
+                            mData = Firebase.database.reference
+                            mData.child("User").child(mUser!!.uid).setValue(user)
+                            register_loading.visibility = View.INVISIBLE
+                            Toast.makeText(
+                                baseContext, "Successful registration!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            // Sign in success, update UI with the signed-in user's information
+                            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            // Handle failures
+                            // ...
+                        }
+                    }
 
-                    var user = User(email, password, register_name.text.toString(),url!! )
-                    var mUser = mAuth.currentUser
-                    mData = Firebase.database.reference
-                    mData.child("User").child(mUser!!.uid).setValue(user)
-                    register_loading.visibility = View.INVISIBLE
-                    Toast.makeText(
-                        baseContext, "Successful registration!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    // Sign in success, update UI with the signed-in user's information
-                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                    startActivity(intent)
                 } else {
                     // If sign in fails, display a message to the user.
                     register_loading.visibility = View.INVISIBLE
@@ -175,40 +191,4 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadImageToFirebase(fileUri: Uri) {
-        val storageRef: StorageReference =
-            storage.getReferenceFromUrl("gs://project-3-1ca3b.appspot.com")
-
-        val date = Calendar.getInstance().time
-        val mountainsRef = storageRef.child("image" + date.time + ".png")
-
-        val uploadTask = mountainsRef.putFile(uri!!)
-
-        uploadTask.continueWithTask { task ->
-            if (!task.isSuccessful) {
-            }
-            mountainsRef.downloadUrl
-        }.addOnCompleteListener(OnCompleteListener { task ->
-            if (task.isSuccessful) {
-                url = task.result.toString()
-            }
-        })
-//
-//        if (fileUri != null) {
-//            val fileName = UUID.randomUUID().toString() + ".jpg"
-//
-//            val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
-//
-//            refStorage.putFile(fileUri)
-//                .addOnSuccessListener { taskSnapshot ->
-//                    taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-//                        val imageUrl = it.toString()
-//                    }
-//                }
-//
-//                ?.addOnFailureListener {
-//                    Toast.makeText(this, "Không thể tải ảnh", Toast.LENGTH_SHORT).show()
-//                }
-//        }
-    }
 }
