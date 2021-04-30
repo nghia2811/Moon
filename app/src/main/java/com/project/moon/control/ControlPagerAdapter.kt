@@ -24,8 +24,8 @@ class ControlPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence? {
         when (position) {
-            0 -> return "Home"
-            1 -> return "Commands"
+            0 -> return "Online mode"
+            1 -> return "Offline mode"
             2 -> return "Info"
         }
         return super.getPageTitle(position)

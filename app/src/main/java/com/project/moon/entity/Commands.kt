@@ -1,3 +1,3 @@
 package com.project.moon.entity
 
-data class Commands(var huongdi: String, var khoangcach: String)
+data class Commands(var DirectionCode: Int, var Distance: Int, var CreatedBy: String)

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorGray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    
+    <TextView
+        android:id="@+id/txt_id"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Id:"
+        android:textSize="17sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Id"
+        android:textSize="17sp"
+        android:textColor="@color/colorRed"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@id/txt_id"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/txt_huongdi"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Hướng đi:"
+        android:textSize="17sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_id"/>
+
+    <TextView
+        android:id="@+id/tv_huongdi"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Hướng đi"
+        android:textSize="17sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorBlue"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/txt_huongdi"
+        app:layout_constraintTop_toBottomOf="@id/tv_id"/>
+
+    <TextView
+        android:id="@+id/txt_khoangcach"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Khoảng cách:"
+        android:textSize="17sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_huongdi"/>
+
+    <TextView
+        android:id="@+id/tv_khoangcach"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Khoảng cách"
+        android:textSize="17sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorBlue"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/txt_khoangcach"
+        app:layout_constraintTop_toBottomOf="@id/tv_huongdi"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
