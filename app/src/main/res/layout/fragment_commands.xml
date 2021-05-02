@@ -1,32 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp">
 
-    <EditText
-        android:id="@+id/edt_huongdi"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/edittext_selector"
-        android:hint="Hướng đi"
-        android:padding="10dp"
-        android:textSize="17sp"
+    <ImageView
+        android:id="@+id/center1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btn_ahead1"
         />
+
+    <Button
+        android:id="@+id/btn_ahead1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ahead_selector" />
+
+    <Button
+        android:id="@+id/btn_back1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/center1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/back_selector" />
+
+    <Button
+        android:id="@+id/btn_left1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/center1"
+        android:layout_below="@id/btn_ahead1"
+        android:background="@drawable/left_selector" />
+
+    <Button
+        android:id="@+id/btn_right1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/btn_ahead1"
+        android:layout_toRightOf="@id/center1"
+        android:background="@drawable/right_selector" />
 
     <EditText
         android:id="@+id/edt_khoangcach"
+        android:inputType="number"
         android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/edittext_selector"
         android:hint="Khoảng cách"
         android:padding="10dp"
         android:textSize="17sp"
-        android:layout_below="@id/edt_huongdi"
+        android:layout_below="@id/btn_back1"
         />
 
     <Button
@@ -35,15 +67,19 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_selector"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
         android:text="Send"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@id/edt_khoangcach"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_api"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"/>
-</LinearLayout>
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/btn_send"
+        />
+</RelativeLayout>

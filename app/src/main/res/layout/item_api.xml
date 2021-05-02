@@ -17,7 +17,7 @@
         android:id="@+id/txt_id"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Id:"
+        android:text="Người tạo:"
         android:textSize="17sp"
         android:textColor="@color/colorBlack"
         android:layout_marginStart="10dp"

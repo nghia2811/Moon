@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.project.moon.R
 import com.project.moon.entity.Commands
 
-class Apidapter(private val myDataset: ArrayList<Commands>) :
-    RecyclerView.Adapter<Apidapter.MyViewHolder>() {
+class ApiAdapter(private val myDataset: ArrayList<Commands>) :
+    RecyclerView.Adapter<ApiAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var directionCode: TextView = itemView.findViewById(R.id.tv_huongdi)
@@ -27,8 +27,9 @@ class Apidapter(private val myDataset: ArrayList<Commands>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.directionCode.text = myDataset[position].DirectionCode.toString()
-        holder.distance.text = myDataset[position].Distance.toString()
+        holder.directionCode.text = myDataset[position].direction.toString()
+        holder.distance.text = myDataset[position].distance.toString()
+        holder.id.text = myDataset[position].createdBy
     }
 
     override fun getItemCount() = myDataset.size
