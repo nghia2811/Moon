@@ -33,6 +33,7 @@ class CommandsFragment : Fragment() {
     private var username: String? = null
     private var direction: Int? = 1
     var lstCommands: ArrayList<Commands> = ArrayList()
+    var lstID: ArrayList<String> = ArrayList()
     var apiAdapter: ApiAdapter? = null
 
     override fun onCreateView(
@@ -99,7 +100,7 @@ class CommandsFragment : Fragment() {
             socket.emit("commands", jsonString)
         }
 
-        apiAdapter = ApiAdapter(lstCommands)
+        apiAdapter = ApiAdapter(lstCommands,lstID)
 
         view.rv_api.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -110,16 +111,20 @@ class CommandsFragment : Fragment() {
         mDataCommand.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 lstCommands = ArrayList<Commands>()
+                lstID = ArrayList<String>()
                 for (dataSnapshot1 in dataSnapshot.children) {
                     val p: Commands? = dataSnapshot1.getValue(Commands::class.java)
+                    val id = dataSnapshot1.key
                     lstCommands.add(p!!)
+                    lstID.add(id!!)
                 }
 
-                apiAdapter = ApiAdapter(lstCommands)
+                apiAdapter = ApiAdapter(lstCommands,lstID)
 
                 view.rv_api.apply {
                     layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                     adapter = apiAdapter
+                    adapter?.notifyDataSetChanged()
                 }
             }
 
