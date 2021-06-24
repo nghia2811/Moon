@@ -15,22 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StreamActivity">
+        <activity android:name=".view.settting.StreamActivity">
 
         </activity>
-        <activity android:name=".control.ControlActivity" />
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name="com.project.moon.view.control.ControlActivity" />
+        <activity android:name="com.project.moon.view.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.MainActivity" />
-        <activity android:name=".login.LoginActivity" />
-        <activity android:name=".settting.SettingActivity" />
-        <activity android:name=".device.DeviceActivity" />
-        <activity android:name=".register.RegisterActivity" />
+        <activity android:name="com.project.moon.view.main.MainActivity" />
+        <activity android:name="com.project.moon.view.login.LoginActivity" />
+        <activity android:name="com.project.moon.view.settting.SettingActivity" />
+        <activity android:name="com.project.moon.view.device.DeviceActivity" />
+        <activity android:name="com.project.moon.view.register.RegisterActivity" />
     </application>
 
 </manifest>
